@@ -21,7 +21,7 @@ def main():
 		icon = 'dialog-information'
 	else:
 		summary = 'Command completed with error'
-		body = '%s failed with error code %d' % (sys.argv[1], return_value)
+		body = 'Exit code %d from %s' % (return_value, sys.argv[1])
 		icon = 'dialog-error'
 	notify2.Notification(summary, body, icon).show()
 

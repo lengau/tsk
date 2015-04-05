@@ -13,7 +13,6 @@ def main():
 
 	notify2.init('Tell')
 	command_string = ' '.join(sys.argv[1:])
-	# notify2.Notification("Summary", "Body text", "notification-message-im").show()
 	return_value = subprocess.call(command_string, shell=True)
 	if return_value == 0:
 		summary = 'Command completed successfully'

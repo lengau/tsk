@@ -1,0 +1,31 @@
+[project]
+name = "tsk"
+version = "0.1.0"
+authors = [
+  { name="Alex Lowe", email="alex@lowe.dev" },
+]
+description = "Notify the user when a command completes."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Operating System :: Linux",
+]
+dependencies = [
+]
+
+[project.scripts]
+tsk = "tsk:main"
+
+[project.urls]
+Homepage = "https://github.com/lengau/tsk"
+Issues = "https://github.com/lengau/tsk/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+

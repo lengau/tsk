@@ -1,0 +1,53 @@
+name: tsk
+summary: Notify when a command has completed.
+description: |
+  Notify when a command has completed.
+
+  This can either be used after a command or as a wrapper around a command. For example:
+    tsk echo hi
+  will run `echo hi` in a shell and then notify you of its success or failure. However:
+    echo hi && tsk -s || tsk -e
+  will notify you of the success or failure of the echo command once it completes.
+    tsk $?
+  will notify you of the exit code of the last command. This is mostly useful for adding to a long-running command while it's running, but only works if the command doesn't read from stdin. Finally,
+    tsk
+  will simply notify you when it runs, allowing you to know when the previous command exits.
+version: git
+base: core22
+# build_base: devel
+confinement: classic
+# adopt-info: tsk
+
+apps:
+  tsk:
+    command: bin/python $SNAP/bin/tsk
+
+parts:
+  python-deps:
+    plugin: nil
+    source: .
+    stage-packages:
+      - libpython3-stdlib
+      - libpython3.10-stdlib
+      - libpython3.10-minimal
+      - python3-pip
+      - python3-setuptools
+      - python3-wheel
+      - python3-venv
+      - python3-minimal
+      - python3-distutils
+      - python3-pkg-resources
+      - python3.10-minimal
+      - libnotify-bin
+    build-attributes:
+      - enable-patchelf
+  tsk:
+    after: [python-deps]
+    plugin: python
+    python-packages:
+      - wheel
+      - pip
+      - setuptools
+    source: .
+    build-attributes:
+      - enable-patchelf
